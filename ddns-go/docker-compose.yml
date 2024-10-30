@@ -5,7 +5,7 @@ services:
     network_mode: "host"
     restart: "always"
     volumes:
-      - "/root/data/ddns:/root"
+      - "/root/data/ddns/config.yaml:/root/.ddns_go_config.yaml"
     logging:
       driver: "json-file"
       options:
