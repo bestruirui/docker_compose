@@ -1,20 +1,13 @@
 services:
-  SS-SERVER:
-
-    container_name: "SS-SERVER"
-
+  ss-server:
+    container_name: "ss-server"
     image: "ghcr.io/shadowsocks/ssserver-rust"
-
     network_mode: "bridge"
-
     ports:
       - "8388:8388/tcp"
-
     restart: "always"
-
     volumes:
       - "/root/data/ss-server/config.json:/etc/shadowsocks-rust/config.json"
-
     logging:
       driver: "json-file"
       options:

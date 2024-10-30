@@ -1,17 +1,11 @@
 services:
   NAT-SS:
-  
-    container_name: "NAT-SS"
-
+    container_name: "nat-ss-server"
     image: "bestrui/natmap"
-
     network_mode: "host"
-
     restart: "always"
-
     volumes:
       - "/root/data/natmap:/app"
-
     command:
       - "/usr/bin/natmap"
       - "-4"
@@ -27,7 +21,6 @@ services:
       - "8388"
       - "-e"
       - "/app/clash"
-
     logging:
       driver: json-file
       options:
@@ -35,18 +28,12 @@ services:
         max-file: "1"
         
   NAT-NGINX:
-  
-    container_name: "NAT-NGINX"
-
+    container_name: "nat-nginx"
     image: "bestrui/natmap"
-
     network_mode: "host"
-
     restart: "always"
-
     volumes:
       - "/root/data/natmap:/app"
-
     command:
       - "/usr/bin/natmap"
       - "-4"
@@ -62,7 +49,6 @@ services:
       - "443"
       - "-e"
       - "/app/nginx"
-
     logging:
       driver: json-file
       options:

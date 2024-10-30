@@ -1,0 +1,18 @@
+services:
+  dufs:
+    container_name: "dufs"
+    image: "sigoden/dufs"
+    network_mode: "bridge"
+    ports:
+      - "5000:5000/tcp"
+    restart: "always"
+    volumes:
+      - "/root/data:/data"
+    environment:
+      - "DUFS_SERVE_PATH=/data"
+      - "DUFS_LOG_FILE=/dev/null"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "200k"

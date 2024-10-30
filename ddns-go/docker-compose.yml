@@ -1,0 +1,13 @@
+services:
+  ddns:
+    container_name: "ddns"
+    image: "jeessy/ddns-go"
+    network_mode: "host"
+    restart: "always"
+    volumes:
+      - "/root/data/ddns:/root"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "200k"

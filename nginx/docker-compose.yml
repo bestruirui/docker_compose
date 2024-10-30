@@ -1,5 +1,6 @@
 services:
   nginx:
+    container_name: "nginx"
     image: 'jc21/nginx-proxy-manager:latest'
     restart: always
     ports:
@@ -9,3 +10,8 @@ services:
     volumes:
       - /root/data/nginx/data:/data
       - /root/data/nginx/letsencrypt:/etc/letsencrypt
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "200k"
