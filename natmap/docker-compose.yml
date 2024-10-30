@@ -1,0 +1,70 @@
+services:
+  NAT-SS:
+  
+    container_name: "NAT-SS"
+
+    image: "bestrui/natmap"
+
+    network_mode: "host"
+
+    restart: "always"
+
+    volumes:
+      - "/root/data/natmap:/app"
+
+    command:
+      - "/usr/bin/natmap"
+      - "-4"
+      - "-s"
+      - "turn.cloudflare.com"
+      - "-h"
+      - "qq.com"
+      - "-b"
+      - "0"
+      - "-t"
+      - "192.168.31.10"
+      - "-p"
+      - "8388"
+      - "-e"
+      - "/app/clash"
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k" 
+        max-file: "1"
+        
+  NAT-NGINX:
+  
+    container_name: "NAT-NGINX"
+
+    image: "bestrui/natmap"
+
+    network_mode: "host"
+
+    restart: "always"
+
+    volumes:
+      - "/root/data/natmap:/app"
+
+    command:
+      - "/usr/bin/natmap"
+      - "-4"
+      - "-s"
+      - "turn.cloudflare.com"
+      - "-h"
+      - "qq.com"
+      - "-b"
+      - "0"
+      - "-t"
+      - "192.168.31.10"
+      - "-p"
+      - "443"
+      - "-e"
+      - "/app/nginx"
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k" 
+        max-file: "1"
